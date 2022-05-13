@@ -19,7 +19,7 @@ group = 'your interes group'
 
 async def my_event_handler(event):
 
-    cnx = mysql.connector.connect(user='root', database='telegram')
+    cnx = mysql.connector.connect(user='userdb', database='telegram')
     cursor = cnx.cursor()
     today = str(datetime.now().date())
     sender = await event.get_sender()
@@ -27,7 +27,7 @@ async def my_event_handler(event):
     chat = await event.get_chat()
     sender = await event.get_sender()
    
-    add_message = ("INSERT INTO mensajes (username, message, group, roue, first_name,last_name) VALUES (%s, %s, %s, %s, %s, %s)")
+    add_message = ("INSERT INTO mensajes (username, message, group, hour, first_name,last_name) VALUES (%s, %s, %s, %s, %s, %s)")
 
     data_message = (sender.username , event.raw_text, chat.title, today, sender.first_name, sender.last_name)
     print('resultado mensaje: ', data_message)
