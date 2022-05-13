@@ -4,19 +4,16 @@ import json
 from datetime import date, datetime, timedelta
 import mysql.connector
 
+
+
 # api_id y api_hash.
-api_id = 14251256
-api_hash = '31c9395f4965436ab03f5a355cce15a4'
+api_id = api_id #number
+api_hash = 'api_hash'
 
 client = TelegramClient('anon', api_id, api_hash)
 
-# group = 'Desarrolladores NodeJS'
-#group = ['Desarrolladores NodeJS']
-group = 'fuerteyderecho'
 
-
-#username = events.username
-
+group = 'your interes group'
 
 @client.on(events.NewMessage(chats=group))
 
@@ -29,10 +26,8 @@ async def my_event_handler(event):
 
     chat = await event.get_chat()
     sender = await event.get_sender()
- 
-    #print ("{'texto':'",event.raw_text,"','nombre_chat':'", chat.title,"','usuario':'", sender.username,"','nombre':'", sender.first_name,"','apellido':'", sender.last_name,"'},") 
-    
-    add_message = ("INSERT INTO mensajes (username, mensaje, grupo, hora, first_name,last_name) VALUES (%s, %s, %s, %s, %s, %s)")
+   
+    add_message = ("INSERT INTO mensajes (username, message, group, roue, first_name,last_name) VALUES (%s, %s, %s, %s, %s, %s)")
 
     data_message = (sender.username , event.raw_text, chat.title, today, sender.first_name, sender.last_name)
     print('resultado mensaje: ', data_message)
